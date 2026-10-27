@@ -1,0 +1,580 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070a0f"/>
+      <stop offset="40%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#080c14"/>
+    </linearGradient>
+
+    <!-- Card Gradients -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.98"/>
+    </linearGradient>
+
+    <linearGradient id="gatewayGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0a101d" stop-opacity="0.98"/>
+    </linearGradient>
+
+    <linearGradient id="layer1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0.25"/>
+    </linearGradient>
+
+    <linearGradient id="layer2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#78350f" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0.25"/>
+    </linearGradient>
+
+    <linearGradient id="layer3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4c1d95" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.25"/>
+    </linearGradient>
+
+    <linearGradient id="ledgerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#115e59" stop-opacity="0.2"/>
+    </linearGradient>
+
+    <linearGradient id="permitGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#065f46"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="denyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+
+    <!-- Drop Shadows / Glows -->
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="glowGold" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Markers -->
+    <marker id="arrBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrGold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrPurple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#a855f7"/>
+    </marker>
+    <marker id="arrTeal" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#14b8a6"/>
+    </marker>
+  </defs>
+
+  <!-- Background Layer -->
+  <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+  <!-- Tech Grid Background -->
+  <g stroke="#334155" stroke-opacity="0.15" stroke-width="1">
+    <path d="M 0 60 H 1920 M 0 180 H 1920 M 0 300 H 1920 M 0 420 H 1920 M 0 540 H 1920 M 0 660 H 1920 M 0 780 H 1920 M 0 900 H 1920 M 0 1020 H 1920"/>
+    <path d="M 120 0 V 1080 M 240 0 V 1080 M 360 0 V 1080 M 480 0 V 1080 M 600 0 V 1080 M 720 0 V 1080 M 840 0 V 1080 M 960 0 V 1080 M 1080 0 V 1080 M 1200 0 V 1080 M 1320 0 V 1080 M 1440 0 V 1080 M 1560 0 V 1080 M 1680 0 V 1080 M 1800 0 V 1080"/>
+  </g>
+
+  <!-- ================= HEADER BANNER ================= -->
+  <g transform="translate(80, 45)">
+    <!-- Main Title -->
+    <text x="0" y="34" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" fill="#ffffff" letter-spacing="-0.02em">
+      IBAE: Intent-Bound Action Envelope Protocol
+    </text>
+    <!-- Subtitle -->
+    <text x="0" y="65" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="500" font-size="16" fill="#94a3b8">
+      Open Specification for Purpose-Scoped Security in AI Agent Runtimes • Protocol-Layer Architecture
+    </text>
+
+    <!-- Standards & Methodological Tags -->
+    <g transform="translate(1120, 8)" font-family="JetBrains Mono, monospace" font-size="12">
+      <rect x="0" y="0" width="130" height="28" rx="6" fill="#0f172a" stroke="#0284c7" stroke-width="1.2"/>
+      <text x="65" y="18" fill="#38bdf8" font-weight="600" text-anchor="middle">RFC 9449 DPoP</text>
+
+      <rect x="142" y="0" width="130" height="28" rx="6" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+      <text x="207" y="18" fill="#fbbf24" font-weight="600" text-anchor="middle">RFC 7800 cnf</text>
+
+      <rect x="284" y="0" width="155" height="28" rx="6" fill="#0f172a" stroke="#059669" stroke-width="1.2"/>
+      <text x="361" y="18" fill="#34d399" font-weight="600" text-anchor="middle">OSSTMM Trust Gate</text>
+
+      <rect x="451" y="0" width="180" height="28" rx="6" fill="#0f172a" stroke="#8b5cf6" stroke-width="1.2"/>
+      <text x="541" y="18" fill="#c084fc" font-weight="600" text-anchor="middle">Substrate-Agnostic</text>
+    </g>
+
+    <line x1="0" y1="82" x2="1760" y2="82" stroke="#334155" stroke-width="1.5"/>
+  </g>
+
+  <!-- ================= 1. LEFT COLUMN: AGENT RUNTIME ================= -->
+  <g transform="translate(80, 150)">
+    <!-- Container Card -->
+    <rect width="360" height="560" rx="16" fill="url(#cardGrad)" stroke="#38bdf8" stroke-width="1.8"/>
+    <!-- Card Header -->
+    <path d="M 0 16 Q 0 0 16 0 L 344 0 Q 360 0 360 16 L 360 48 L 0 48 Z" fill="#0369a1"/>
+    <text x="180" y="31" font-family="Inter, sans-serif" font-weight="800" font-size="16" fill="#ffffff" text-anchor="middle" letter-spacing="0.04em">
+      AI AGENT RUNTIME
+    </text>
+
+    <!-- Orchestrator / Declared Purpose -->
+    <g transform="translate(20, 65)">
+      <rect width="320" height="85" rx="10" fill="#0b1329" stroke="#1e40af" stroke-width="1.2"/>
+      <text x="14" y="24" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#60a5fa">Orchestration &amp; Purpose Declaration</text>
+      <text x="14" y="44" font-family="Inter, sans-serif" font-size="12" fill="#cbd5e1">Boundary: Orchestrator assigns purpose scope</text>
+      <g font-family="JetBrains Mono, monospace" font-size="11" fill="#93c5fd">
+        <text x="14" y="66">declared_purpose: "read-invoices"</text>
+        <text x="235" y="66" fill="#fbbf24">exp: 60s</text>
+      </g>
+    </g>
+
+    <!-- Ephemeral Keypair -->
+    <g transform="translate(20, 165)">
+      <rect width="320" height="75" rx="10" fill="#0b1329" stroke="#0369a1" stroke-width="1.2"/>
+      <text x="14" y="24" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#38bdf8">Ephemeral Keypair (RFC 9449)</text>
+      <text x="14" y="44" font-family="Inter, sans-serif" font-size="12" fill="#cbd5e1">Generated locally in agent memory</text>
+      <text x="14" y="62" font-family="JetBrains Mono, monospace" font-size="11" fill="#7dd3fc">privKey (held) • pubKey thumbprint: jkt</text>
+    </g>
+
+    <!-- Outbound Request Bundle Header -->
+    <text x="24" y="265" font-family="Inter, sans-serif" font-weight="800" font-size="12" fill="#94a3b8" letter-spacing="0.05em">
+      PER-REQUEST CRYPTOGRAPHIC BUNDLE
+    </text>
+
+    <!-- Token 1: Purpose Token -->
+    <g transform="translate(20, 278)">
+      <rect width="320" height="110" rx="8" fill="#0f172a" stroke="#d97706" stroke-width="1.4"/>
+      <rect x="0" y="0" width="6" height="110" rx="2" fill="#f59e0b"/>
+      <text x="16" y="22" font-family="JetBrains Mono, monospace" font-weight="700" font-size="12" fill="#fbbf24">Authorization: Bearer &lt;Token&gt;</text>
+      <text x="16" y="42" font-family="JetBrains Mono, monospace" font-size="11" fill="#cbd5e1">sub: "agent-finance-01"</text>
+      <text x="16" y="58" font-family="JetBrains Mono, monospace" font-size="11" fill="#cbd5e1">role: "analyst" | prov: "oidc-corp"</text>
+      <text x="16" y="74" font-family="JetBrains Mono, monospace" font-size="11" fill="#38bdf8">purpose: "read-invoices"</text>
+      <text x="16" y="94" font-family="JetBrains Mono, monospace" font-size="11" fill="#f59e0b">cnf.jkt: "urn:ietf:params:oauth:jwk-thumbprint"</text>
+    </g>
+
+    <!-- Token 2: DPoP Proof -->
+    <g transform="translate(20, 400)">
+      <rect width="320" height="92" rx="8" fill="#0f172a" stroke="#0284c7" stroke-width="1.4"/>
+      <rect x="0" y="0" width="6" height="92" rx="2" fill="#0284c7"/>
+      <text x="16" y="22" font-family="JetBrains Mono, monospace" font-weight="700" font-size="12" fill="#38bdf8">DPoP: &lt;Proof-JWT&gt; (Signed by privKey)</text>
+      <text x="16" y="42" font-family="JetBrains Mono, monospace" font-size="11" fill="#cbd5e1">htm: "GET" | htu: "https://api/invoices/98"</text>
+      <text x="16" y="58" font-family="JetBrains Mono, monospace" font-size="11" fill="#cbd5e1">iat: 1730045360 | jti: "f93a1c8b-..."</text>
+      <text x="16" y="76" font-family="JetBrains Mono, monospace" font-size="11" fill="#7dd3fc">header.jwk: { kty: "EC", crv: "P-256", x, y }</text>
+    </g>
+
+    <!-- Error Receiver Footnote -->
+    <g transform="translate(20, 504)">
+      <rect width="320" height="42" rx="6" fill="#450a0a" stroke="#b91c1c" stroke-dasharray="4 3"/>
+      <text x="14" y="18" font-family="Inter, sans-serif" font-weight="700" font-size="11" fill="#fca5a5">Inbound Structured Error Handler</text>
+      <text x="14" y="32" font-family="JetBrains Mono, monospace" font-size="10" fill="#fecaca">Receives JSON DENY verdict &amp; reason code</text>
+    </g>
+  </g>
+
+  <!-- ================= FLOW ARROWS: AGENT <-> GATEWAY ================= -->
+  <!-- Forward Request Arrow -->
+  <g>
+    <path d="M 440 330 L 515 330" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arrBlue)"/>
+    <rect x="444" y="298" width="68" height="24" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+    <text x="478" y="314" font-family="Inter, sans-serif" font-weight="700" font-size="11" fill="#38bdf8" text-anchor="middle">REQUEST</text>
+  </g>
+
+  <!-- Reverse DENY Error Arrow -->
+  <g>
+    <path d="M 520 525 L 440 525" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#arrRed)"/>
+    <rect x="444" y="532" width="68" height="22" rx="4" fill="#450a0a" stroke="#b91c1c" stroke-width="1"/>
+    <text x="478" y="547" font-family="Inter, sans-serif" font-weight="700" font-size="10" fill="#fca5a5" text-anchor="middle">DENY (ERR)</text>
+  </g>
+
+  <!-- ================= 2. CENTER: IBAE GATEWAY (PEP) ================= -->
+  <g transform="translate(520, 150)">
+    <!-- Gateway Enclosure Card -->
+    <rect width="780" height="560" rx="20" fill="url(#gatewayGrad)" stroke="#64748b" stroke-width="2"/>
+    <!-- Gateway Header -->
+    <path d="M 0 20 Q 0 0 20 0 L 760 0 Q 780 0 780 20 L 780 54 L 0 54 Z" fill="#1e293b"/>
+    <text x="390" y="34" font-family="Inter, sans-serif" font-weight="900" font-size="19" fill="#ffffff" text-anchor="middle" letter-spacing="0.04em">
+      IBAE GATEWAY (POLICY ENFORCEMENT POINT - PEP)
+    </text>
+    <text x="390" y="48" font-family="Inter, sans-serif" font-weight="500" font-size="11" fill="#94a3b8" text-anchor="middle">
+      Non-Bypassable In-Line Boundary • Substrate-Agnostic Decision Engine
+    </text>
+
+    <!-- === LAYER 1: TOKEN &amp; DPoP VALIDATION === -->
+    <g transform="translate(30, 70)">
+      <rect width="720" height="115" rx="12" fill="url(#layer1Grad)" stroke="#0284c7" stroke-width="1.8"/>
+      
+      <!-- Layer Tag -->
+      <rect x="18" y="14" width="76" height="24" rx="5" fill="#0369a1"/>
+      <text x="56" y="30" font-family="Inter, sans-serif" font-weight="800" font-size="11" fill="#ffffff" text-anchor="middle">LAYER 1</text>
+      <text x="106" y="31" font-family="Inter, sans-serif" font-weight="800" font-size="16" fill="#38bdf8">Token &amp; DPoP Proof Validation</text>
+      <text x="700" y="30" font-family="JetBrains Mono, monospace" font-size="11" fill="#94a3b8" text-anchor="end">Cryptographic Possession Gate</text>
+
+      <!-- Three Sub-Checks in Layer 1 -->
+      <g transform="translate(18, 48)" font-family="Inter, sans-serif" font-size="11">
+        <!-- Check 1 -->
+        <rect x="0" y="0" width="220" height="52" rx="6" fill="#091427" stroke="#1e3a8a"/>
+        <text x="10" y="20" font-weight="700" fill="#93c5fd">1. Asymmetric Signature</text>
+        <text x="10" y="38" fill="#cbd5e1" font-size="10">Validate Token vs Issuer JWKS</text>
+
+        <!-- Check 2 -->
+        <rect x="232" y="0" width="220" height="52" rx="6" fill="#091427" stroke="#1e3a8a"/>
+        <text x="242" y="20" font-weight="700" fill="#93c5fd">2. cnf.jkt Binding Match</text>
+        <text x="242" y="38" fill="#cbd5e1" font-size="10">SHA256(proof.jwk) == cnf.jkt</text>
+
+        <!-- Check 3 -->
+        <rect x="464" y="0" width="220" height="52" rx="6" fill="#091427" stroke="#1e3a8a"/>
+        <text x="474" y="20" font-weight="700" fill="#93c5fd">3. Replay &amp; Freshness</text>
+        <text x="474" y="38" fill="#cbd5e1" font-size="10">Check jti cache &amp; exp/iat window</text>
+      </g>
+    </g>
+
+    <!-- Connective arrow Layer 1 -> Layer 2 -->
+    <path d="M 390 185 L 390 200" stroke="#0284c7" stroke-width="2" marker-end="url(#arrBlue)"/>
+
+    <!-- === LAYER 2: ENVELOPE CHECK === -->
+    <g transform="translate(30, 202)">
+      <rect width="720" height="120" rx="12" fill="url(#layer2Grad)" stroke="#d97706" stroke-width="1.8"/>
+      
+      <!-- Layer Tag -->
+      <rect x="18" y="14" width="76" height="24" rx="5" fill="#b45309"/>
+      <text x="56" y="30" font-family="Inter, sans-serif" font-weight="800" font-size="11" fill="#ffffff" text-anchor="middle">LAYER 2</text>
+      <text x="106" y="31" font-family="Inter, sans-serif" font-weight="800" font-size="16" fill="#fbbf24">Action Envelope Structural Enforcement</text>
+      <text x="700" y="30" font-family="JetBrains Mono, monospace" font-size="11" fill="#fde68a" text-anchor="end">Policy Ceiling Match</text>
+
+      <!-- Envelope Details -->
+      <g transform="translate(18, 48)">
+        <rect x="0" y="0" width="440" height="56" rx="6" fill="#1c1304" stroke="#78350f"/>
+        <text x="12" y="20" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#fde68a">Declared Purpose Envelope Evaluation</text>
+        <text x="12" y="36" font-family="JetBrains Mono, monospace" font-size="10" fill="#fef3c7">Matches (tool, method, path) against compiled rules</text>
+        <text x="12" y="49" font-family="Inter, sans-serif" font-size="10" fill="#f59e0b">Rule Precedence: Deny overrides Allow • Default Deny outside envelope</text>
+
+        <!-- Pass / Fail Criteria Mini Badges -->
+        <g transform="translate(452, 0)">
+          <rect x="0" y="0" width="232" height="26" rx="5" fill="#064e3b" stroke="#059669"/>
+          <text x="116" y="17" font-family="JetBrains Mono, monospace" font-weight="700" font-size="10" fill="#6ee7b7" text-anchor="middle">MATCH: PROCEED TO LAYER 3</text>
+
+          <rect x="0" y="30" width="232" height="26" rx="5" fill="#450a0a" stroke="#dc2626"/>
+          <text x="116" y="47" font-family="JetBrains Mono, monospace" font-weight="700" font-size="10" fill="#fca5a5" text-anchor="middle">MISMATCH: EMIT DENY_ENVELOPE</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Connective arrow Layer 2 -> Layer 3 -->
+    <path d="M 390 322 L 390 338" stroke="#d97706" stroke-width="2" marker-end="url(#arrGold)"/>
+
+    <!-- === LAYER 3: DELTA DETECTION === -->
+    <g transform="translate(30, 340)">
+      <rect width="720" height="120" rx="12" fill="url(#layer3Grad)" stroke="#7c3aed" stroke-width="1.8"/>
+      
+      <!-- Layer Tag -->
+      <rect x="18" y="14" width="76" height="24" rx="5" fill="#6d28d9"/>
+      <text x="56" y="30" font-family="Inter, sans-serif" font-weight="800" font-size="11" fill="#ffffff" text-anchor="middle">LAYER 3</text>
+      <text x="106" y="31" font-family="Inter, sans-serif" font-weight="800" font-size="16" fill="#c084fc">Session Behavioral Delta Detection</text>
+      <text x="700" y="30" font-family="JetBrains Mono, monospace" font-size="11" fill="#ddd6fe" text-anchor="end">Trajectory Drift Analysis</text>
+
+      <!-- Delta Stream & Escalation -->
+      <g transform="translate(18, 48)">
+        <rect x="0" y="0" width="370" height="56" rx="6" fill="#140727" stroke="#4c1d95"/>
+        <text x="12" y="20" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#e9d5ff">Session-Scale Stream Inspection</text>
+        <text x="12" y="36" font-family="Inter, sans-serif" font-size="11" fill="#cbd5e1">Monitors valid actions for statistical / behavioral drift</text>
+        <text x="12" y="50" font-family="JetBrains Mono, monospace" font-size="10" fill="#a855f7">Detects resource concentration &amp; velocity spikes</text>
+
+        <!-- Escalation Ladder -->
+        <g transform="translate(382, 0)">
+          <rect x="0" y="0" width="302" height="56" rx="6" fill="#140727" stroke="#6d28d9"/>
+          <text x="12" y="18" font-family="Inter, sans-serif" font-weight="700" font-size="11" fill="#e9d5ff">Graduated Escalation Ladder:</text>
+          <g transform="translate(12, 28)" font-family="JetBrains Mono, monospace" font-size="10">
+            <rect x="0" y="0" width="60" height="20" rx="3" fill="#1e3a8a"/>
+            <text x="30" y="14" fill="#93c5fd" text-anchor="middle">Alert</text>
+            <rect x="68" y="0" width="65" height="20" rx="3" fill="#854d0e"/>
+            <text x="100" y="14" fill="#fde047" text-anchor="middle">Throttle</text>
+            <rect x="141" y="0" width="65" height="20" rx="3" fill="#9a3412"/>
+            <text x="173" y="14" fill="#fdba74" text-anchor="middle">Curtail</text>
+            <rect x="214" y="0" width="65" height="20" rx="3" fill="#7f1d1d"/>
+            <text x="246" y="14" fill="#fca5a5" text-anchor="middle">Halt</text>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- === DECISION BUS (BOTTOM OF GATEWAY) === -->
+    <g transform="translate(30, 475)">
+      <rect width="720" height="65" rx="10" fill="#0b1120" stroke="#334155" stroke-width="1.2"/>
+      
+      <text x="24" y="37" font-family="Inter, sans-serif" font-weight="800" font-size="13" fill="#94a3b8">
+        GATEWAY VERDICT BUS:
+      </text>
+
+      <!-- Verdict Badges -->
+      <g transform="translate(190, 15)">
+        <rect x="0" y="0" width="135" height="35" rx="6" fill="url(#permitGrad)" stroke="#10b981"/>
+        <text x="67" y="22" font-family="Inter, sans-serif" font-weight="800" font-size="13" fill="#ffffff" text-anchor="middle">✓ PERMIT</text>
+
+        <rect x="150" y="0" width="165" height="35" rx="6" fill="url(#denyGrad)" stroke="#ef4444"/>
+        <text x="232" y="22" font-family="Inter, sans-serif" font-weight="800" font-size="12" fill="#ffffff" text-anchor="middle">✗ DENY_TOKEN</text>
+
+        <rect x="330" y="0" width="180" height="35" rx="6" fill="url(#denyGrad)" stroke="#ef4444"/>
+        <text x="420" y="22" font-family="Inter, sans-serif" font-weight="800" font-size="12" fill="#ffffff" text-anchor="middle">✗ DENY_ENVELOPE</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================= 3. POLICY FILE (FEEDS LAYER 2) ================= -->
+  <g transform="translate(810, 85)">
+    <rect width="200" height="52" rx="8" fill="#1e180a" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="100" y="22" font-family="Inter, sans-serif" font-weight="800" font-size="12" fill="#fde68a" text-anchor="middle">POLICY FILE (YAML)</text>
+    <text x="100" y="40" font-family="JetBrains Mono, monospace" font-size="10" fill="#fef08a" text-anchor="middle">purposes.yaml (Rules/Paths)</text>
+    <path d="M 910 137 L 910 200" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4 3" marker-end="url(#arrGold)"/>
+  </g>
+
+  <!-- ================= 4. RIGHT COLUMN: DOWNSTREAM & LEDGER ================= -->
+
+  <!-- Top Right: DOWNSTREAM TOOLS & SERVICES (Receives PERMIT) -->
+  <g transform="translate(1380, 150)">
+    <rect width="460" height="240" rx="16" fill="url(#cardGrad)" stroke="#10b981" stroke-width="1.8"/>
+    <!-- Card Header -->
+    <path d="M 0 16 Q 0 0 16 0 L 444 0 Q 460 0 460 16 L 460 48 L 0 48 Z" fill="#047857"/>
+    <text x="230" y="31" font-family="Inter, sans-serif" font-weight="800" font-size="15" fill="#ffffff" text-anchor="middle" letter-spacing="0.04em">
+      DOWNSTREAM TOOLS &amp; SERVICES
+    </text>
+
+    <text x="20" y="75" font-family="Inter, sans-serif" font-weight="600" font-size="12" fill="#94a3b8">
+      Target Systems (Only Accepts Traffic via Gateway PEP):
+    </text>
+
+    <!-- Target Service Cards -->
+    <g transform="translate(20, 90)" font-family="Inter, sans-serif" font-size="12">
+      <!-- Target 1 -->
+      <rect x="0" y="0" width="420" height="38" rx="6" fill="#062d22" stroke="#059669" stroke-width="1.2"/>
+      <text x="14" y="24" font-weight="700" fill="#6ee7b7">Model Context Protocol (MCP) Servers</text>
+      <text x="400" y="24" font-family="JetBrains Mono" font-size="10" fill="#a7f3d0" text-anchor="end">stdio / SSE Proxy</text>
+
+      <!-- Target 2 -->
+      <rect x="0" y="46" width="420" height="38" rx="6" fill="#062d22" stroke="#059669" stroke-width="1.2"/>
+      <text x="14" y="70" font-weight="700" fill="#6ee7b7">Protected Enterprise REST APIs &amp; Microservices</text>
+      <text x="400" y="70" font-family="JetBrains Mono" font-size="10" fill="#a7f3d0" text-anchor="end">Reverse Proxy</text>
+
+      <!-- Target 3 -->
+      <rect x="0" y="92" width="420" height="38" rx="6" fill="#062d22" stroke="#059669" stroke-width="1.2"/>
+      <text x="14" y="116" font-weight="700" fill="#6ee7b7">Function Execution Endpoints &amp; Datastores</text>
+      <text x="400" y="116" font-family="JetBrains Mono" font-size="10" fill="#a7f3d0" text-anchor="end">Scoped Execution</text>
+    </g>
+  </g>
+
+  <!-- PERMIT Forwarding Arrow from Gateway to Downstream -->
+  <g>
+    <path d="M 1300 270 L 1380 270" stroke="#10b981" stroke-width="4" marker-end="url(#arrGreen)"/>
+    <rect x="1308" y="238" width="68" height="24" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1"/>
+    <text x="1342" y="254" font-family="Inter, sans-serif" font-weight="800" font-size="11" fill="#6ee7b7" text-anchor="middle">PERMIT</text>
+  </g>
+
+  <!-- Bottom Right: APPEND-ONLY AUDIT LEDGER -->
+  <g transform="translate(1380, 420)">
+    <rect width="460" height="290" rx="16" fill="url(#cardGrad)" stroke="#14b8a6" stroke-width="1.8"/>
+    <!-- Card Header -->
+    <path d="M 0 16 Q 0 0 16 0 L 444 0 Q 460 0 460 16 L 460 48 L 0 48 Z" fill="#0f766e"/>
+    <text x="230" y="31" font-family="Inter, sans-serif" font-weight="800" font-size="15" fill="#ffffff" text-anchor="middle" letter-spacing="0.04em">
+      APPEND-ONLY AUDIT LEDGER
+    </text>
+
+    <!-- Ledger Content -->
+    <g transform="translate(20, 65)">
+      <text x="0" y="0" font-family="Inter, sans-serif" font-weight="600" font-size="12" fill="#94a3b8">
+        Forensic Truth • Immutable Decision Trail:
+      </text>
+
+      <rect y="12" width="420" height="115" rx="8" fill="#042f2e" stroke="#115e59"/>
+      <g font-family="JetBrains Mono, monospace" font-size="10" fill="#ccfbf1">
+        <text x="12" y="32">id: "ledger-8f4b..." | ts: "2026-10-27T16:08:00Z"</text>
+        <text x="12" y="50">session_id: "s-928" | agent_sub: "agent-fin-01"</text>
+        <text x="12" y="68">action: { tool: "accounting", method: "GET", path: "/..." }</text>
+        <text x="12" y="86" fill="#34d399">decision: "PERMIT" | dpop_jti: "jti-09a2..."</text>
+        <text x="12" y="104" fill="#f87171">or decision: "DENY_ENVELOPE" (with rule violation context)</text>
+      </g>
+
+      <!-- Ledger Consumers / Purpose -->
+      <g transform="translate(0, 138)" font-family="Inter, sans-serif" font-size="11" fill="#cbd5e1">
+        <rect width="420" height="60" rx="6" fill="#0a1518" stroke="#134e4a"/>
+        <text x="12" y="20" font-weight="700" fill="#5eead4">Operational &amp; Regulatory Functions:</text>
+        <text x="12" y="37" font-size="10">• Real-time Security Inquest &amp; Forensic Traceability</text>
+        <text x="12" y="51" font-size="10">• Ground-truth input for OSSTMM RAV (Risk Assessment Value)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Writes from Layers to Ledger -->
+  <g>
+    <!-- Combined write arrow bus from gateway to ledger -->
+    <path d="M 1250 510 C 1320 510, 1340 540, 1380 540" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-dasharray="5 3" marker-end="url(#arrTeal)"/>
+    <rect x="1285" y="515" width="85" height="20" rx="4" fill="#042f2e" stroke="#14b8a6" stroke-width="1"/>
+    <text x="1327" y="529" font-family="JetBrains Mono" font-size="9" fill="#5eead4" text-anchor="middle">LEDGER WRITES</text>
+  </g>
+
+  <!-- ================= 5. BOTTOM SECTION: 3 INTEGRATION PATTERNS ================= -->
+  <g transform="translate(80, 740)">
+    <!-- Container Card for Variants -->
+    <rect width="1760" height="290" rx="18" fill="url(#cardGrad)" stroke="#475569" stroke-width="1.8"/>
+    <!-- Header -->
+    <path d="M 0 18 Q 0 0 18 0 L 1742 0 Q 1760 0 1760 18 L 1760 44 L 0 44 Z" fill="#1e293b"/>
+    <text x="30" y="29" font-family="Inter, sans-serif" font-weight="800" font-size="15" fill="#ffffff" letter-spacing="0.04em">
+      TOKEN ISSUANCE ARCHITECTURAL VARIANTS (THREE INTEGRATION PATTERNS)
+    </text>
+    <text x="1730" y="28" font-family="Inter, sans-serif" font-weight="500" font-size="12" fill="#94a3b8" text-anchor="end">
+      How agents obtain purpose tokens across existing enterprise identity infrastructures
+    </text>
+
+    <!-- Three Columns for Pattern A, B, C -->
+    <g transform="translate(30, 60)">
+      
+      <!-- PATTERN A: WRAPPING ISSUER -->
+      <g transform="translate(0, 0)">
+        <rect width="540" height="205" rx="12" fill="#0a101f" stroke="#38bdf8" stroke-width="1.4"/>
+        <rect x="0" y="0" width="540" height="34" rx="12" fill="#0369a1"/>
+        <rect x="0" y="24" width="540" height="10" fill="#0369a1"/>
+        <text x="16" y="23" font-family="Inter, sans-serif" font-weight="800" font-size="13" fill="#ffffff">
+          PATTERN A: WRAPPING ISSUER
+        </text>
+        <text x="524" y="23" font-family="Inter, sans-serif" font-size="11" fill="#bae6fd" text-anchor="end">
+          For Standard Enterprise OIDC IdPs
+        </text>
+
+        <!-- Pattern Flow Visual -->
+        <g transform="translate(16, 50)" font-family="Inter, sans-serif" font-size="11">
+          <!-- Step 1: Enterprise IdP -->
+          <rect x="0" y="0" width="145" height="58" rx="6" fill="#1e293b" stroke="#475569"/>
+          <text x="10" y="20" font-weight="700" fill="#ffffff">Enterprise IdP</text>
+          <text x="10" y="36" fill="#94a3b8" font-size="10">OIDC / OAuth 2.0</text>
+          <text x="10" y="49" fill="#38bdf8" font-size="9">Issues Access Token</text>
+
+          <!-- Arrow -->
+          <path d="M 145 29 L 175 29" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrBlue)"/>
+
+          <!-- Step 2: Wrapping Issuer -->
+          <rect x="178" y="0" width="155" height="58" rx="6" fill="#082f49" stroke="#0284c7"/>
+          <text x="188" y="20" font-weight="700" fill="#38bdf8">Wrapping Issuer</text>
+          <text x="188" y="36" fill="#cbd5e1" font-size="10">Validates IdP token</text>
+          <text x="188" y="49" fill="#fde047" font-size="9">Attaches purpose + cnf</text>
+
+          <!-- Arrow -->
+          <path d="M 333 29 L 363 29" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrGold)"/>
+
+          <!-- Step 3: IBAE Purpose Token -->
+          <rect x="366" y="0" width="142" height="58" rx="6" fill="#1e180a" stroke="#d97706"/>
+          <text x="376" y="20" font-weight="700" fill="#fbbf24">Purpose Token</text>
+          <text x="376" y="36" fill="#fef08a" font-size="10">DPoP cnf.jkt bound</text>
+          <text x="376" y="49" fill="#a7f3d0" font-size="9">Ready for Gateway</text>
+        </g>
+
+        <!-- Descriptive Text -->
+        <g transform="translate(16, 126)" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8">
+          <text x="0" y="14" fill="#cbd5e1" font-weight="600">Bridging Legacy &amp; Modern Identity:</text>
+          <text x="0" y="32">Enables Okta, Entra ID, Ping, Keycloak, or Auth0 to support IBAE</text>
+          <text x="0" y="48">without upgrading IdP core software. Lightweight wrapper handles minting.</text>
+        </g>
+      </g>
+
+      <!-- PATTERN B: NATIVE DPoP IdP -->
+      <g transform="translate(580, 0)">
+        <rect width="540" height="205" rx="12" fill="#0a101f" stroke="#f59e0b" stroke-width="1.4"/>
+        <rect x="0" y="0" width="540" height="34" rx="12" fill="#b45309"/>
+        <rect x="0" y="24" width="540" height="10" fill="#b45309"/>
+        <text x="16" y="23" font-family="Inter, sans-serif" font-weight="800" font-size="13" fill="#ffffff">
+          PATTERN B: NATIVE DPoP IdP
+        </text>
+        <text x="524" y="23" font-family="Inter, sans-serif" font-size="11" fill="#fef3c7" text-anchor="end">
+          RFC 9449 Native Support
+        </text>
+
+        <!-- Pattern Flow Visual -->
+        <g transform="translate(16, 50)" font-family="Inter, sans-serif" font-size="11">
+          <!-- Step 1: Agent Request with DPoP -->
+          <rect x="0" y="0" width="180" height="58" rx="6" fill="#1e293b" stroke="#475569"/>
+          <text x="10" y="20" font-weight="700" fill="#ffffff">Agent Token Request</text>
+          <text x="10" y="36" fill="#94a3b8" font-size="10">Client Credentials + Proof</text>
+          <text x="10" y="49" fill="#38bdf8" font-size="9">Sends DPoP Proof directly</text>
+
+          <!-- Arrow -->
+          <path d="M 180 29 L 245 29" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrGold)"/>
+
+          <!-- Step 2: Native DPoP IdP -->
+          <rect x="250" y="0" width="258" height="58" rx="6" fill="#1e180a" stroke="#d97706"/>
+          <text x="260" y="20" font-weight="700" fill="#fbbf24">Native DPoP / Purpose IdP</text>
+          <text x="260" y="36" fill="#fde68a" font-size="10">Mints cnf.jkt + purpose in 1 step</text>
+          <text x="260" y="49" fill="#34d399" font-size="9">No intermediate wrapper needed</text>
+        </g>
+
+        <!-- Descriptive Text -->
+        <g transform="translate(16, 126)" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8">
+          <text x="0" y="14" fill="#cbd5e1" font-weight="600">Streamlined Direct Flow:</text>
+          <text x="0" y="32">Modern authorization servers with built-in RFC 9449 and custom</text>
+          <text x="0" y="48">claims directly emit purpose tokens. Lowest operational latency.</text>
+        </g>
+      </g>
+
+      <!-- PATTERN C: mTLS OVERLAY MESH -->
+      <g transform="translate(1160, 0)">
+        <rect width="540" height="205" rx="12" fill="#0a101f" stroke="#8b5cf6" stroke-width="1.4"/>
+        <rect x="0" y="0" width="540" height="34" rx="12" fill="#6d28d9"/>
+        <rect x="0" y="24" width="540" height="10" fill="#6d28d9"/>
+        <text x="16" y="23" font-family="Inter, sans-serif" font-weight="800" font-size="13" fill="#ffffff">
+          PATTERN C: mTLS OVERLAY CERT
+        </text>
+        <text x="524" y="23" font-family="Inter, sans-serif" font-size="11" fill="#ede9fe" text-anchor="end">
+          RFC 8705 Certificate-Bound Tokens
+        </text>
+
+        <!-- Pattern Flow Visual -->
+        <g transform="translate(16, 50)" font-family="Inter, sans-serif" font-size="11">
+          <!-- Step 1: Overlay Mesh Identity -->
+          <rect x="0" y="0" width="180" height="58" rx="6" fill="#1e293b" stroke="#475569"/>
+          <text x="10" y="20" font-weight="700" fill="#ffffff">Overlay Mesh Network</text>
+          <text x="10" y="36" fill="#94a3b8" font-size="10">OpenZiti / WireGuard / Spiffe</text>
+          <text x="10" y="49" fill="#c084fc" font-size="9">Endpoint mTLS Certificate</text>
+
+          <!-- Arrow -->
+          <path d="M 180 29 L 245 29" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrPurple)"/>
+
+          <!-- Step 2: Cert-Bound Token -->
+          <rect x="250" y="0" width="258" height="58" rx="6" fill="#190d2e" stroke="#7c3aed"/>
+          <text x="260" y="20" font-weight="700" fill="#c084fc">Certificate-Bound Purpose Token</text>
+          <text x="260" y="36" fill="#ddd6fe" font-size="10">RFC 8705 cnf['x5t#S256'] thumbprint</text>
+          <text x="260" y="49" fill="#34d399" font-size="9">Cryptographic proof in TLS handshake</text>
+        </g>
+
+        <!-- Descriptive Text -->
+        <g transform="translate(16, 126)" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8">
+          <text x="0" y="14" fill="#cbd5e1" font-weight="600">Zero-Trust Overlay Integration:</text>
+          <text x="0" y="32">Uses client certificate thumbprints rather than application-layer DPoP.</text>
+          <text x="0" y="48">Verification occurs in gateway TLS termination. Identical downstream PEP.</text>
+        </g>
+      </g>
+
+    </g>
+  </g>
+
+  <!-- Upward Flow Arrow: Token Issuance -> Agent Runtime -->
+  <g>
+    <path d="M 260 740 L 260 715" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrBlue)"/>
+  </g>
+
+</svg>
