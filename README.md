@@ -41,7 +41,7 @@ Protocol adapters support MCP, OpenAI function calling, REST APIs, and LangChain
 
 ## Attribution
 
-IBAE is grounded in the security measurement framework of the [Open Source Security Testing Methodology Manual (OSSTMM)](https://www.isecom.org/OSSTMM.3.pdf), maintained by the [Institute for Security and Open Methodologies (ISECOM)](https://www.isecom.org). The OSSTMM concepts of Trust as measurable debt, operational controls, and Risk Assessment Values (RAV) inform the protocol's design philosophy.
+IBAE is grounded in the security measurement framework of the [Open Source Security Testing Methodology Manual (OSSTMM)](https://www.isecom.org/OSSTMM.3.pdf), This is based on using OSSTMM v4, which will be public on Dec 1 2026, maintained by the [Institute for Security and Open Methodologies (ISECOM)](https://www.isecom.org). The OSSTMM concepts of Trust as measurable debt, operational controls, and Risk Assessment Values (RAV) inform the protocol's design philosophy.
 
 ## License
 
