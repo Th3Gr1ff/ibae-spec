@@ -66,6 +66,10 @@ cd ..
 pytest tests/
 ```
 
+## Enterprise
+
+This repository contains the open IBAE protocol specification and a reference implementation. For enterprise features including Active Directory integration, AD FS purpose-claim issuance, gMSA identity binding, and commercial support, contact Griffin Cyber Solutions at chris@griffincybersolutions.com.
+
 ## License
 
 This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
