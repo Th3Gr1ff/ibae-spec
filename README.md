@@ -1,26 +1,75 @@
-# IBAE — Intent-Bound Action Envelope (AD-glue lane)
+# IBAE — Intent-Bound Action Envelope Protocol
 
-OSSTMM v4 Intent-Bound Action Envelope architecture, this tree owns the **AD-glue lane**: intent-claim minting + AD FS/gMSA integration.
+An open specification for purpose-scoped security in AI agent runtimes.
 
-Spec is at `/home/pete/dev/ibae/spec/ibae_spec_v1_2026-08-31.md` (Kenna's box). Locked shape v1.1, 2026-08-31.
+IBAE bounds an agent's action space by declared intent, denying any request that deviates from the purpose the agent was granted at session start. The primitive is action-space bounding, not intent measurement.
 
-## Tree layout
+## Specification
 
-- `mock_ad_fs/` — shared mock JWKS + purpose-mint harness. Any lane can point at this instead of a real DC. Contract in its own README.
-- `ad_glue/` — this lane. Ephemeral DPoP key gen/rotate, purpose-window access token mint against AD FS (or mock), DPoP-proof JWT construction per request, gMSA identity abstraction.
-- `tests/` — e2e round-trip: mint → DPoP-proof → verify against mock.
+[SPECIFICATION.md](SPECIFICATION.md) contains the full protocol specification.
 
-## Locked shape (do not drift from spec §3, §6)
+![IBAE Architecture](ibae_open_spec_diagram.png)
 
-- **Access token:** purpose-window lifetime (60s default), multi-use across window. Claims: `sub / role / provenance / purpose / exp + cnf.jkt`. No nonce.
-- **DPoP-proof:** per-request, ephemeral-key signed. Header carries `jwk` (ephemeral pubkey). Payload: `htm / htu / iat / jti`.
-- **Verification chain:** JWKS-verify access token → SHA-256 thumbprint of DPoP-proof `jwk` equals access token `cnf.jkt` → `htm`/`htu` match request → `iat` within ±30s → `jti` not in dedupe window.
-- **Anti-replay** lives at the DPoP-proof layer (`jti` dedupe + `iat` window). Access token is a durable purpose grant.
+## Reference Implementation
 
-## Escape hatch (post-v1)
+This repository includes a reference implementation of the IBAE protocol:
 
-Per-request access token minting (option a shape) available as a per-envelope policy flag. Sits at the policy-authoring-surface lane, not here.
+### Core Modules
 
-## Status
+- **`intentguard_ai/`** — AI agent governance module: delta detection, DLP scanning, envelope enforcement, policy engine, and reverse proxy.
+- **`intentguard_api/`** — 6-step admission pipeline implementing the IBAE verification chain:
+  1. JWKS key resolution
+  2. DPoP proof verification
+  3. Envelope extraction
+  4. Structural policy check
+  5. GUST negative detection
+  6. Admit/deny decision
 
-- 2026-08-31: scaffolding started against mock JWKS + fake purpose-endpoint. Griff building the Windows Server 2022 AD lab VM from `ibae_ad_lab_2026-08-29.zip` (Kenna's kit) in parallel. Real AD FS URL swaps in for the mock at boundary once VM is clean.
+### MVP Stack
+
+- **`mvp/`** — Docker Compose stack with gateway, sidecar, BDD test harness, mock backend, mock Sentinel, and mock Splunk HEC for local development and testing.
+
+### Tests
+
+- **`tests/`** — End-to-end, DLP, AI governance, and pentest MCP server test suites.
+
+### Policies
+
+- **`intentguard_ai/policies/`** — Example YAML policy configurations for demo, pentest, and application-specific use cases.
+
+### Analysis
+
+- **`red_team/`** — Deny-on-delta attack tree analysis.
+
+## Verification Chain
+
+1. JWKS-verify the access token
+2. SHA-256 thumbprint of the DPoP-proof ephemeral public key must equal the access token's `cnf.jkt`
+3. `htm`/`htu` in the DPoP-proof must match the actual request method and URL
+4. `iat` must be within the acceptance window (±30s)
+5. `jti` must not appear in the deduplication window (anti-replay)
+
+## Getting Started
+
+```bash
+# Clone and set up
+git clone https://github.com/Th3Gr1ff/ibae-spec.git
+cd ibae-spec
+pip install -r requirements.txt
+
+# Run the MVP stack
+cd mvp
+docker compose up
+
+# Run tests
+cd ..
+pytest tests/
+```
+
+## License
+
+This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
+
+## Trademarks
+
+IntentGuard and IntentGuard AI are trademarks of Griffin Cyber Solutions. The Apache 2.0 license grants you rights to use, modify, and distribute the code in this repository. It does not grant rights to use the IntentGuard name, logo, or trademarks in derivative works, forks, or commercial products without written permission from Griffin Cyber Solutions.
