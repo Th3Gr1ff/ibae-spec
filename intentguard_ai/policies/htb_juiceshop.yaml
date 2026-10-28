@@ -1,0 +1,41 @@
+# IntentGuard policy: HTB OWASP Juice Shop
+# Scoped to pentest tools against a single target.
+# The target IP must be set before deployment (replace TARGET_IP).
+
+default_purpose: juiceshop-pentest
+
+purposes:
+  juiceshop-pentest:
+    description: "Penetration test against OWASP Juice Shop on HTB. Recon, enumeration, exploitation of web vulns."
+    allowed_tools:
+      - name: "nmap"
+        allowed_params:
+          target: ["TARGET_IP", "localhost", "127.0.0.1"]
+      - name: "gobuster"
+        allowed_params:
+          url: ["http://TARGET_IP*", "https://TARGET_IP*"]
+      - name: "nikto"
+        allowed_params:
+          target: ["TARGET_IP", "http://TARGET_IP*", "https://TARGET_IP*"]
+      - name: "sqlmap"
+        allowed_params:
+          url: ["http://TARGET_IP*", "https://TARGET_IP*"]
+      - name: "curl"
+        allowed_params:
+          url: ["http://TARGET_IP*", "https://TARGET_IP*"]
+      - name: "feroxbuster"
+        allowed_params:
+          url: ["http://TARGET_IP*", "https://TARGET_IP*"]
+      - name: "whatweb"
+        allowed_params:
+          target: ["TARGET_IP", "http://TARGET_IP*", "https://TARGET_IP*"]
+      - name: "hydra"
+        allowed_params:
+          target: ["TARGET_IP"]
+      - name: "shell"
+      - name: "read_file"
+        allowed_params:
+          path: ["/home/dsynth/*", "/tmp/*", "/usr/share/wordlists/*", "/usr/share/seclists/*"]
+      - name: "write_file"
+        allowed_params:
+          path: ["/home/dsynth/findings/*", "/tmp/*"]

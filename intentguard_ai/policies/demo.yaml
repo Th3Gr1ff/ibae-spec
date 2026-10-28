@@ -1,0 +1,39 @@
+# Demo policy: IntentGuard for AI
+# Purpose envelopes for testing against a mock MCP server.
+# SCARE-Context scanning enabled with fail-closed defaults.
+
+default_purpose: read-invoices
+
+scare:
+  context_scan: true
+  outbound_scan: true
+  inbound_scan: true
+  quarantine_on_red: true
+  quarantine_on_amber_inbound: true
+  alert_on_amber: true
+
+purposes:
+  read-invoices:
+    description: "Summarize and report on invoice data. Read-only access to invoices table."
+    allowed_tools:
+      - name: "db_query"
+        allowed_params:
+          table: ["invoices", "invoice_items", "vendors"]
+          operation: ["select"]
+      - name: "summarize"
+      - name: "format_report"
+    scare_overrides:
+      outbound_scan: false
+
+  send-notifications:
+    description: "Send pre-approved notifications to internal users."
+    allowed_tools:
+      - name: "send_message"
+        allowed_params:
+          channel: ["internal-*", "team-*"]
+      - name: "list_recipients"
+
+  full-access:
+    description: "Unrestricted tool access. For testing and admin use only."
+    allowed_tools:
+      - name: "*"

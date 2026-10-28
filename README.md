@@ -1,52 +1,26 @@
-# IBAE: Intent-Bound Action Envelope Protocol
+# IBAE — Intent-Bound Action Envelope (AD-glue lane)
 
-An open specification for purpose-scoped security in AI agent runtimes.
+OSSTMM v4 Intent-Bound Action Envelope architecture, this tree owns the **AD-glue lane**: intent-claim minting + AD FS/gMSA integration.
 
-## What is IBAE?
+Spec is at `/home/pete/dev/ibae/spec/ibae_spec_v1_2026-08-31.md` (Kenna's box). Locked shape v1.1, 2026-08-31.
 
-IBAE defines a protocol for constraining AI agent actions to the scope of their declared purpose, enforced at the infrastructure layer, not inside the agent. It fills a critical gap in the current agent security landscape: a standardized Policy Enforcement Point (PEP) for agent sandboxes.
+## Tree layout
 
-A compromised, jailbroken, or prompt-injected agent that tries to exceed its envelope gets blocked at the gateway before the request touches the downstream service. The agent's cooperation is not required.
+- `mock_ad_fs/` — shared mock JWKS + purpose-mint harness. Any lane can point at this instead of a real DC. Contract in its own README.
+- `ad_glue/` — this lane. Ephemeral DPoP key gen/rotate, purpose-window access token mint against AD FS (or mock), DPoP-proof JWT construction per request, gMSA identity abstraction.
+- `tests/` — e2e round-trip: mint → DPoP-proof → verify against mock.
 
-## Core Mechanisms
+## Locked shape (do not drift from spec §3, §6)
 
-- **Purpose-scoped tokens** with DPoP cryptographic binding (RFC 9449), tying every request to a specific agent, purpose, method, and timestamp
-- **Structural action envelopes** defining exactly which tools, methods, and paths an agent may call for a given purpose, with default-deny enforcement
-- **Session-level drift detection** monitoring behavioral patterns across permitted actions
-- **Append-only audit ledger** providing a complete forensic record of every enforcement decision
+- **Access token:** purpose-window lifetime (60s default), multi-use across window. Claims: `sub / role / provenance / purpose / exp + cnf.jkt`. No nonce.
+- **DPoP-proof:** per-request, ephemeral-key signed. Header carries `jwk` (ephemeral pubkey). Payload: `htm / htu / iat / jti`.
+- **Verification chain:** JWKS-verify access token → SHA-256 thumbprint of DPoP-proof `jwk` equals access token `cnf.jkt` → `htm`/`htu` match request → `iat` within ±30s → `jti` not in dedupe window.
+- **Anti-replay** lives at the DPoP-proof layer (`jti` dedupe + `iat` window). Access token is a durable purpose grant.
 
-## Specification
+## Escape hatch (post-v1)
 
-The full protocol specification is in [SPECIFICATION.md](SPECIFICATION.md).
+Per-request access token minting (option a shape) available as a per-envelope policy flag. Sits at the policy-authoring-surface lane, not here.
 
-## Architecture
+## Status
 
-![IBAE Protocol Architecture](ibae_open_spec_diagram.png)
-
-## Integration Patterns
-
-IBAE is substrate-agnostic. Three token-issuance patterns cover existing identity infrastructures:
-
-- **Pattern A: Wrapping Issuer** for standard OIDC providers (Okta, Keycloak, Auth0, AD FS)
-- **Pattern B: Native DPoP IdP** for providers with built-in RFC 9449 support
-- **Pattern C: mTLS Overlay** for zero-trust mesh networks (OpenZiti, WireGuard)
-
-Protocol adapters support MCP, OpenAI function calling, REST APIs, and LangChain.
-
-## What This Spec Covers (and Doesn't)
-
-**Open protocol (this repo):** Token format, enforcement pipeline, policy schema, delta-detection interface, ledger schema.
-
-**Implementation-specific (not in this repo):** Detection algorithms, content scanning, deployment architecture, production hardening. These vary across vendors and deployments. The protocol is the interoperability surface; the implementation is the product.
-
-## Attribution
-
-IBAE is grounded in the security measurement framework of the [Open Source Security Testing Methodology Manual (OSSTMM)](https://www.isecom.org/OSSTMM.3.pdf), This is based on using OSSTMM v4, which will be public on Dec 1 2026, maintained by the [Institute for Security and Open Methodologies (ISECOM)](https://www.isecom.org). The OSSTMM concepts of Trust as measurable debt, operational controls, and Risk Assessment Values (RAV) inform the protocol's design philosophy.
-
-## License
-
-This specification is licensed under [Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)](https://creativecommons.org/licenses/by-sa/3.0/).
-
-## Contributing
-
-Feedback and contributions welcome via GitHub Issues and Pull Requests.
+- 2026-08-31: scaffolding started against mock JWKS + fake purpose-endpoint. Griff building the Windows Server 2022 AD lab VM from `ibae_ad_lab_2026-08-29.zip` (Kenna's kit) in parallel. Real AD FS URL swaps in for the mock at boundary once VM is clean.

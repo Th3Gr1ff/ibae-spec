@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+venv/
+mock_ad_fs/keys/
+intentguard_api/keys/
+mvp/synthetic_jwks/*.pem
+lab_deliverables/
+full_test_2026-09-01/*.log
+*.egg-info/
+dist/
+build/

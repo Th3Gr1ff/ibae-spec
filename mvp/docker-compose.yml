@@ -1,0 +1,99 @@
+services:
+  gateway:
+    build: ./gateway
+    container_name: intentguard_gateway
+    ports:
+      # 8443 is taken on the host by griffshare nginx; use 8444 externally
+      - "8444:8443"
+    environment:
+      ADFS_JWKS_URL: "https://fs.ibae.lab/adfs/discovery/keys"
+      MOCK_BACKEND_URL: "http://mock_backend:8080"
+      # Phase 2: revoked personas for step-5 GUST-negative testing.
+      # dave@ibae.lab = revoked-user persona (in test client).
+      REVOKED_SUBJECTS: "dave@ibae.lab"
+      # Phase 3: SIEM connector for OCSF ledger stream.
+      # Comma-separated list: stdout, sentinel, splunk_hec.
+      # "both" is a back-compat alias for "stdout,sentinel".
+      SIEM_CONNECTOR: "stdout,sentinel,splunk_hec"
+      SENTINEL_ENDPOINT: "http://mock_sentinel:8090/api/logs"
+      SENTINEL_WORKSPACE_ID: "mock-workspace"
+      SENTINEL_LOG_TYPE: "IntentGuardOCSF"
+      # Phase 3.1: Splunk HEC (same emitter also works with Cribl HEC listener).
+      SPLUNK_HEC_ENDPOINT: "http://mock_splunk_hec:8090"
+      SPLUNK_HEC_TOKEN: "mock-hec-token-lab-use-only"
+      SPLUNK_HEC_SOURCETYPE: "intenttrace:ocsf"
+      SPLUNK_HEC_HOST: "intenttrace-gateway"
+      SPLUNK_HEC_VERIFY_TLS: "false"
+      # Phase 4: ledger fan-out to Behavioral Delta Detector.
+      BDD_ENDPOINT: "http://bdd:8090/events"
+      # Phase 4: shared secret guarding /_admin/revoke.
+      ADMIN_SHARED_SECRET: "dev-admin-key"
+    extra_hosts:
+      # Map AD FS federation-service name to the Tailscale IP so
+      # JWKS TLS SAN check works.
+      - "fs.ibae.lab:100.87.4.63"
+    volumes:
+      # Scaffold-mode: mount a directory the test_client can drop a
+      # synthetic public JWK into. Gateway merges it with AD FS JWKS.
+      - ./synthetic_jwks:/synthetic_jwks:ro
+    depends_on:
+      - mock_backend
+      - mock_sentinel
+      - mock_splunk_hec
+    networks:
+      - ibae_net
+
+  mock_backend:
+    build: ./mock_backend
+    container_name: intentguard_mock_backend
+    expose:
+      - "8080"
+    networks:
+      - ibae_net
+
+  mock_sentinel:
+    build: ./mock_sentinel
+    container_name: intentguard_mock_sentinel
+    ports:
+      # Expose to host so test harness can hit /_received for verification.
+      - "8091:8090"
+    networks:
+      - ibae_net
+
+  mock_splunk_hec:
+    build: ./mock_splunk_hec
+    container_name: intenttrace_mock_splunk_hec
+    ports:
+      # Expose to host so test harness can hit /_received for verification.
+      - "8094:8090"
+    networks:
+      - ibae_net
+
+  bdd:
+    build: ./bdd
+    container_name: intentguard_bdd
+    environment:
+      BDD_RATE_THRESHOLD: "10"
+      BDD_RATE_WINDOW_SECONDS: "60"
+      SIDECAR_ENDPOINT: "http://sidecar:8090/review"
+    ports:
+      # Expose to host so tests can hit /_status.
+      - "8092:8090"
+    networks:
+      - ibae_net
+
+  sidecar:
+    build: ./sidecar
+    container_name: intentguard_sidecar
+    environment:
+      SIDECAR_POLICY_MODE: "auto"
+      GATEWAY_ADMIN_URL: "http://gateway:8443/_admin/revoke"
+      ADMIN_SHARED_SECRET: "dev-admin-key"
+    ports:
+      - "8093:8090"
+    networks:
+      - ibae_net
+
+networks:
+  ibae_net:
+    driver: bridge
